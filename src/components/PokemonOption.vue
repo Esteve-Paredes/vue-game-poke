@@ -2,6 +2,7 @@
   <div class="options-container">
     <ul>
       <li
+        :class="{ disable: showPokemon }"
         v-for="pokemon in pokemons"
         :key="pokemon.id"
         @click="$emit('selection', pokemon.id)"
@@ -12,18 +13,23 @@
   </div>
 </template>
 
-<script scope>
+<script>
 export default {
   props: {
     pokemons: {
       type: Array,
       required: true,
     },
+    showPokemon: {
+      type: Boolean,
+      requerid: true,
+      default: false,
+    },
   },
 };
 </script>
 
-<style>
+<style scope>
 ul {
   list-style-type: none;
 }
@@ -43,5 +49,10 @@ li:hover {
 .options-container {
   display: flex;
   justify-content: center;
+}
+
+.disable {
+  color: gray;
+  pointer-events: none;
 }
 </style>

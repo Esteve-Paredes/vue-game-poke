@@ -8,6 +8,7 @@
       @selection="checkAnswer"
       :showPokemon="showPokemon"
     />
+    <h2>Tu puntaje es: {{ contador }}</h2>
     <template v-if="showAnswer">
       <h2>{{ message }}</h2>
       <button @click="newGame">Nuevo Juego</button>
@@ -32,6 +33,7 @@ export default {
       showPokemon: false,
       showAnswer: false,
       message: "",
+      contador: 0,
     };
   },
   methods: {
@@ -45,6 +47,7 @@ export default {
       this.showPokemon = true;
       this.showAnswer = true;
       if (selectedId === this.pokemon.id) {
+        this.contador++;
         this.message = `Correcto, ${this.pokemon.name}`;
       } else {
         this.message = `Oops, era ${this.pokemon.name}`;
